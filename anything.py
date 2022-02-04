@@ -1,8 +1,29 @@
 import random
 import string
 import cmd
+import time
+import os
+import sys
 
 str1 = string.ascii_letters + string.digits
+
+banner = """
+                       _   _     _             
+     /\               | | | |   (_)            
+    /  \   _ __  _   _| |_| |__  _ _ __   __ _ 
+   / /\ \ | '_ \| | | | __| '_ \| | '_ \ / _` |
+  / ____ \| | | | |_| | |_| | | | | | | | (_| |
+ /_/    \_\_| |_|\__, |\__|_| |_|_|_| |_|\__, |
+                  __/ |                   __/ |
+                 |___/                   |___/ 
+                              Author By LkB1ng
+"""
+
+def animate_banner(tick = 0.001):
+	for c in banner:
+		time.sleep(tick)
+		print(c,end="")
+animate_banner()
 
 class options(cmd.Cmd):
 	intro = "A small program to record the learning process.Input 'help' for help:)"
@@ -11,6 +32,9 @@ class options(cmd.Cmd):
 	def do_rndpwd(self, _):
 		"Use rndpwd_builder"
 		self.rndpwd()
+
+	def emptyline(self):
+		print("Please input command!")
 
 	def do_exit(self, _):
 		"Exit"
@@ -25,4 +49,7 @@ class options(cmd.Cmd):
 		print("\n")
 
 if __name__ == '__main__':
-	options().cmdloop()
+	try:
+		options().cmdloop()
+	except:
+		exit()
